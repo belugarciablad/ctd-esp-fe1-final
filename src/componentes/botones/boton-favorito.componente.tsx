@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import './boton-favorito.css';
 /**
  * Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo
@@ -7,10 +8,17 @@ import './boton-favorito.css';
  * 
  * @returns un JSX element 
  */
-const BotonFavorito = ({esFavorito, onClick}) => {
+
+interface FavoriteCharacter {
+    esFavorito: Boolean,
+    onClick: React.MouseEventHandler
+
+}
+
+const BotonFavorito:FC<FavoriteCharacter>= ({esFavorito, onClick}:FavoriteCharacter) => {
     const src = esFavorito ? "/imagenes/star-filled.png" : "/imagenes/star.png"
 
-    return <div className="boton-favorito">
+    return <div className="boton-favorito" onClick={onClick}>
         <img src={src} alt={"favorito"} />
     </div>
 }
