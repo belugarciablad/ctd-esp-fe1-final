@@ -7,11 +7,13 @@ import { pageReducer } from "../reducers/page.reducer";
 import { createStore, applyMiddleware } from 'redux';
 import {TypedUseSelectorHook, useSelector as useReduxSelector} from "react-redux";
 import thunk from "redux-thunk";
+import favoriteCharacterReducer from "../reducers/favoriteCharacter.reducer";
 
 
 const rootReducer = combineReducers({
    characters: characterReducer,
-   page:pageReducer
+   page:pageReducer,
+   favorites: favoriteCharacterReducer
 });
 
 export type IRootState = ReturnType<typeof rootReducer>;

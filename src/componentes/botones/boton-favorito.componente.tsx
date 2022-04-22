@@ -9,13 +9,13 @@ import './boton-favorito.css';
  * @returns un JSX element 
  */
 
-interface FavoriteCharacter {
+interface FavoriteCharacterProps {
     esFavorito: Boolean,
     onClick: React.MouseEventHandler
-
 }
 
-const BotonFavorito:FC<FavoriteCharacter>= ({esFavorito, onClick}:FavoriteCharacter) => {
+const BotonFavorito:FC<FavoriteCharacterProps>= ({esFavorito, onClick}:FavoriteCharacterProps) => {
+
     const src = esFavorito ? "/imagenes/star-filled.png" : "/imagenes/star.png"
 
     return <div className="boton-favorito" onClick={onClick}>

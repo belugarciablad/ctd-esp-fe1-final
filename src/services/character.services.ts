@@ -10,10 +10,6 @@ export const findCharacterAPI = async (name?: string, page?:number) => {
       .then((data)=>{
         return{
           characters : data.results,
-          nextpage: data.info.next || ''
         }
       });
   };
-
-  // tipar los characters con la promesa
-  // (characters: Promise<Character[]>) 

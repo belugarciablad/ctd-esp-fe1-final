@@ -13,8 +13,6 @@ const Filtros: FC<SearchBar> = ({inputSearch}:SearchBar) => {
 
   const dispatch = useDispatch();
 
-  
-
   const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     dispatch(fetchCharactersThunk(query));

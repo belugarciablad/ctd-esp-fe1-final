@@ -30,7 +30,7 @@ const GrillaPersonajes:FC = () => {
         if (!characters || characters.length === 0) return <></>;
 
     return <div className="grilla-personajes">
-       {characters.map(char => <TarjetaPersonaje character={char} />)}
+       {characters.map(char => <TarjetaPersonaje key={char.id+"character"} character={char} />)}
     </div>
 }
  
