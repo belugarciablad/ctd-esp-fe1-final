@@ -1,4 +1,4 @@
-import './tarjeta-episodio.css';
+import '../../styles/tarjeta-episodio.css';
 
 /**
  * Tarjeta para cada episodio dentro de la vista de personaje.

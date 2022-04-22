@@ -2,8 +2,7 @@ import { Action, ActionCreator, ThunkAction } from "@reduxjs/toolkit";
 import { findCharacterAPI} from "../services/character.services";
 import { IRootState, useSelector } from "../store/store";
 import Character from "../types/character.types";
-import {pageReducer} from '../reducers/page.reducer'
-import {pageActions} from '../actions/pages.actions'
+
 
 interface FetchCharactersPendingAction extends Action {
   type: "FETCH_CHARACTERS_PENDING";
@@ -70,8 +69,7 @@ export const fetchCharactersThunk = ({query,page}:findPropsFetch): FetchCharacte
   return async (dispatch, getState) => {
     // Marcamos el state como loading
     dispatch(fetchCharactersPending(query));
-    // dispatch(page);
-    //
+
     try {
       const characters: Character[] = await (await findCharacterAPI({name:query,page:page})).characters;
       const pagenumber: number= await (await findCharacterAPI({name:query,page:page})).lastpage;

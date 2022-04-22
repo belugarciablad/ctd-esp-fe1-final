@@ -1,4 +1,4 @@
-import "./Detalle.css";
+import "../styles/Detalle.css";
 import BotonFavorito from "../componentes/botones/boton-favorito.componente";
 import TarjetaEpisodio from "../componentes/episodios/tarjeta-episodio.componente";
 

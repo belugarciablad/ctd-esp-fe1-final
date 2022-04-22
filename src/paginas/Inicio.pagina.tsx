@@ -17,9 +17,10 @@ const PaginaInicio = () => {
     const dispatch = useDispatch();
     const [inputValue, setInputValue] = useState('');
 
+    // referencia al input de busqueda
     const inputSearch = useRef<HTMLInputElement>(null);
-   const query = (inputSearch.current)? inputSearch.current.value : ''
     
+    // funcion que se ejecuta al hacer click en el boton para borrar la busqueda. Reinicia la paginacion.
     const onClick :MouseEventHandler<HTMLButtonElement> =()=> {
         
         if(inputSearch.current){

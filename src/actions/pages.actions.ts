@@ -1,5 +1,4 @@
 import { Action, ActionCreator } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
 
 interface NextPageAction extends Action {
     type: "NEXT_PAGE",
