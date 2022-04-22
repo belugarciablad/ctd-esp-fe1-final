@@ -1,8 +1,13 @@
-import Character from "../types/character.types";
 
-export const findCharacterAPI = async (name?: string, page?:number) => {
+export interface findProps{
+  name?:string,
+  page?:number
+}
+
+export const findCharacterAPI = async ({name, page}:findProps) => {
     let params = "?";
-    params += page ? `page=${page}` : '';
+    // params += `page=${page}`
+    params += page? `page=${page}` : '';
     params += (name&&page)? `&`: '';
     params += name ? `name=${name}` : '';
     return fetch(`https://rickandmortyapi.com/api/character/${params}`)
@@ -10,6 +15,7 @@ export const findCharacterAPI = async (name?: string, page?:number) => {
       .then((data)=>{
         return{
           characters : data.results,
+          lastpage: data.info.pages
         }
       });
   };

@@ -5,7 +5,6 @@ interface Character {
     image: string;
     species: string;
     episode: string[];
-    favorite: boolean;
 }
 
 

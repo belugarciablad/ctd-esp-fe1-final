@@ -6,14 +6,14 @@ export interface CharacterState {
     status: "IDLE" | "LOADING" | "COMPLETED" | "FAILED";
     characters: Character[];
     errorMessage: string | null;
-    //page: number | null
+    pagenumber: number 
   }
   
   const initialState: CharacterState = {
     status: "IDLE",
     characters: [],
     errorMessage: null,
-    //page: 0
+    pagenumber: 0
   };
   
   const characterReducer: Reducer<CharacterState, CharacterActions> = (
@@ -32,7 +32,8 @@ export interface CharacterState {
         return {
           ...state,
           status: "COMPLETED",
-          characters: action.characters
+          characters: action.characters,
+          pagenumber: action.pagenumber
         };
       case "FETCH_CHARACTERS_FAILED":
         return {

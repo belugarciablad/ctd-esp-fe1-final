@@ -9,13 +9,10 @@ import { CenterFocusStrongOutlined } from '@material-ui/icons';
 
 /**
  * Tarjeta para cada personaje dentro de la grilla de personajes. 
- * 
- * Deberás agregar las propiedades necesarias para mostrar los datos de los personajes
- * 
+ * @param {Character} character: Personaje que se renderiza en la tarjeta
  * 
  * @returns un JSX element 
  */
-
 interface CharacterCard{
     character: Character
 }
@@ -28,6 +25,10 @@ const TarjetaPersonaje:FC<CharacterCard>= ({character}:CharacterCard) => {
     const {favoritesMap} = useSelector((state)=>state.favorites)
     let esFavorito = favoritesMap.has(character.id);
 
+    /**
+     * Funcion para agregar o quitar favoritos
+     * @returns void
+    */
     const handleFavorite=()=>{
         !esFavorito ? dispatch(addFavorite(character)) : dispatch(removeFavorite(character));
     }

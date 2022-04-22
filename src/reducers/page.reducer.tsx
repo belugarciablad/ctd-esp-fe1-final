@@ -6,7 +6,7 @@ export interface PageState {
 }
 
 const initialState: PageState = {
-    page: 0
+    page: 1
 };
 
 export const pageReducer: Reducer<PageState,pageActions> =(state = initialState, action): PageState =>{
@@ -24,7 +24,7 @@ export const pageReducer: Reducer<PageState,pageActions> =(state = initialState,
         case "RESTART_PAGE":
             return{
                 ...state,
-                page:0
+                page:1
             }    
     
         default:

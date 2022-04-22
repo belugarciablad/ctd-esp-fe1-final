@@ -1,6 +1,6 @@
 import { Action, ActionCreator, ThunkAction } from "@reduxjs/toolkit";
 import { findCharacterAPI} from "../services/character.services";
-import { IRootState } from "../store/store";
+import { IRootState, useSelector } from "../store/store";
 import Character from "../types/character.types";
 import {pageReducer} from '../reducers/page.reducer'
 import {pageActions} from '../actions/pages.actions'
@@ -13,6 +13,7 @@ interface FetchCharactersPendingAction extends Action {
 interface FetchCharactersSuccessAction extends Action {
   type: "FETCH_CHARACTERS_SUCCESS";
   characters: Character[];
+  pagenumber: number
 }
 
 interface FetchCharactersFailedAction extends Action {
@@ -30,11 +31,12 @@ const fetchCharactersPending: ActionCreator<FetchCharactersPendingAction> = (
 };
 
 const fetchCharactersSuccess: ActionCreator<FetchCharactersSuccessAction> = (
-  characters: Character[]
+  characters: Character[],pagenumber
 ) => {
   return {
     type: "FETCH_CHARACTERS_SUCCESS",
-    characters: characters
+    characters: characters,
+    pagenumber: pagenumber
   };
 };
 
@@ -55,16 +57,25 @@ export type CharacterActions =
 interface FetchCharactersThunkAction
   extends ThunkAction<void, IRootState, unknown, CharacterActions> {}
 
+interface findPropsFetch{
+  query?:string,
+  page?:number
+}
 
-export const fetchCharactersThunk = (query: string, page?:number): FetchCharactersThunkAction => {
+
+
+export const fetchCharactersThunk = ({query,page}:findPropsFetch): FetchCharactersThunkAction => {
+  
+  
   return async (dispatch, getState) => {
     // Marcamos el state como loading
     dispatch(fetchCharactersPending(query));
     // dispatch(page);
     //
     try {
-      const characters: Character[] = await (await findCharacterAPI(query,page)).characters;
-      dispatch(fetchCharactersSuccess(characters));
+      const characters: Character[] = await (await findCharacterAPI({name:query,page:page})).characters;
+      const pagenumber: number= await (await findCharacterAPI({name:query,page:page})).lastpage;
+      dispatch(fetchCharactersSuccess(characters,pagenumber));
     } catch (e) {
       dispatch(fetchCharactersFailure(e));
     }
